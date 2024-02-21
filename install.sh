@@ -146,14 +146,14 @@ install_V2bX() {
     systemctl daemon-reload
     systemctl stop V2bX
     systemctl enable V2bX
-    echo -e "${green}ZicBoard ${last_version}${plain} Quá trình cài đặt đã hoàn tất và được thiết lập để bắt đầu tự động khi khởi động."
+    echo -e "${green}V2bX ${last_version}${plain} 安装完成，已设置开机自启"
     cp geoip.dat /etc/V2bX/
     cp geosite.dat /etc/V2bX/
 
     if [[ ! -f /etc/V2bX/config.json ]]; then
         cp config.json /etc/V2bX/
         echo -e ""
-        echo -e "liện hệ NK Quang để biết thêm thông tin"
+        echo -e "全新安装，请先参看教程：https://github.com/wyx2685/V2bX/tree/master/example，配置必要的内容"
         first_install=true
     else
         systemctl start V2bX
@@ -161,9 +161,9 @@ install_V2bX() {
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
-            echo -e "${green}ZicBoard đã khởi động thành công${plain}"
+            echo -e "${green}V2bX 重启成功${plain}"
         else
-            echo -e "${red}ZicBoard Quá trình khởi động có thể không thành công. Vui lòng sử dụng nhật ký V2bX để xem thông tin nhật ký sau${plain}"
+            echo -e "${red}V2bX 可能启动失败，请稍后使用 V2bX log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/V2bX-project/V2bX/wiki${plain}"
         fi
         first_install=false
     fi
@@ -209,13 +209,13 @@ install_V2bX() {
     echo "------------------------------------------"
     # 首次安装询问是否生成配置文件
     if [[ $first_install == true ]]; then
-        read -rp "Bạn cài đặt ZicBoard lần đầu tiên. bạn muốn cấu hình tự động không (y/n): " if_generate
+        read -rp "检测到你为第一次安装V2bX,是否自动直接生成配置文件？(y/n): " if_generate
         if [[ $if_generate == [Yy] ]]; then
             curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/kutycma/ZicB/main/initconfig.sh
             source initconfig.sh
             rm initconfig.sh -f
             generate_config_file
-            read -rp "Có nên cài đặt kernel bbr không ? (y/n): " if_install_bbr
+            read -rp "是否安装bbr内核 ?(y/n): " if_install_bbr
             if [[ $if_install_bbr == [Yy] ]]; then
                 install_bbr
             fi
@@ -223,6 +223,6 @@ install_V2bX() {
     fi
 }
 
-echo -e "${green}bắt đầu cài đặt${plain}"
+echo -e "${green}开始安装${plain}"
 install_base
 install_V2bX $1
