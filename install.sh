@@ -180,7 +180,7 @@ install_V2bX() {
     if [[ ! -f /etc/V2bX/custom_inbound.json ]]; then
         cp custom_inbound.json /etc/V2bX/
     fi
-    curl -o /usr/bin/V2bX -Ls https://xn--ss-8ja.vn/singcore/V2bX.sh
+    curl -o /usr/bin/V2bX -Ls https://raw.githubusercontent.com/kutycma/ZicB/main/V2bX.sh
     chmod +x /usr/bin/V2bX
     if [ ! -L /usr/bin/v2bx ]; then
         ln -s /usr/bin/V2bX /usr/bin/v2bx
@@ -211,7 +211,7 @@ install_V2bX() {
     if [[ $first_install == true ]]; then
         read -rp "Bạn cài đặt ZicBoard lần đầu tiên. bạn muốn cấu hình tự động không (y/n): " if_generate
         if [[ $if_generate == [Yy] ]]; then
-            curl -o ./initconfig.sh -Ls https://xn--ss-8ja.vn/singcore/initconfig.sh
+            curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/kutycma/ZicB/main/initconfig.sh
             source initconfig.sh
             rm initconfig.sh -f
             generate_config_file
