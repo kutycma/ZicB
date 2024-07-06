@@ -10,7 +10,7 @@ read -p "Nhập lựa chọn của bạn (1/2/3): " choice
 # Hàm để cài đặt Aiko-Server
 install_aiko_server() {
   # Tải xuống và chạy script cài đặt Aiko-Server
-  wget --no-check-certificate -O Aiko-Server.sh https://raw.githubusercontent.com/kutycma/AikoServer/master/install.sh && bash Aiko-Server.sh
+  wget --no-check-certificate -O Aiko-Server.sh https://raw.githubusercontent.com/AikoPanel/AikoServer/master/install.sh && bash Aiko-Server.sh
   
   # Clear màn hình và hiển thị thông báo thành công
   clear
@@ -26,7 +26,7 @@ install_aiko_server() {
     local node_id=$1
     local node_type=$2
     cat <<EOL
-  - PanelType: "AikoPanel"
+  - PanelType: "ZicBoard"
     ApiConfig:
       ApiHost: "$api_host"
       ApiKey: "$api_key"
@@ -56,7 +56,7 @@ EOL
     local email=$4
     local cloudflare_api_key=$5
     cat <<EOL
-  - PanelType: "AikoPanel"
+  - PanelType: "ZicBoard"
     ApiConfig:
       ApiHost: "$api_host"
       ApiKey: "$api_key"
@@ -152,7 +152,7 @@ EOL
     local email=$4
     local cloudflare_api_key=$5
     cat <<EOL
-  - PanelType: "AikoPanel"
+  - PanelType: "ZicBoard"
     ApiConfig:
       ApiHost: "$api_host"
       ApiKey: "$api_key"
