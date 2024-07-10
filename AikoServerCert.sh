@@ -13,6 +13,18 @@ install_aiko_server() {
   wget --no-check-certificate -O Aiko-Server.sh https://raw.githubusercontent.com/AikoPanel/AikoServer/master/install.sh && bash Aiko-Server.sh
   openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/Aiko-Server/cert/zicboard.crt -keyout /etc/Aiko-Server/cert/zicboard.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
   
+  mkdir -p /etc/Aiko-Server/cert
+
+  # Tạo chứng chỉ SSL
+  openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes \
+    -out /etc/Aiko-Server/cert/zicboard.crt \
+    -keyout /etc/Aiko-Server/cert/zicboard.key \
+    -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
+  
+  if [[ ! -f /etc/Aiko-Server/cert/zicboard.crt || ! -f /etc/Aiko-Server/cert/zicboard.key ]]; then
+    echo "Tạo chứng chỉ không thành công. Kiểm tra lại lệnh openssl."
+    exit 1
+  fi
   # Clear màn hình và hiển thị thông báo thành công
   clear
   echo "Cài đặt Aiko Server thành công. Vui lòng config."
