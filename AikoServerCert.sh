@@ -74,20 +74,32 @@ EOL
 
   # Thêm cấu hình cho node đầu tiên
   read -p "Nhập NodeID cho node: " node_id1
-  read -p "Chọn loại Node (v2ray/trojan): " node_type1
-  enable_vless1="false"
-  if [ "$node_type1" == "v2ray" ]; then
+  echo "Chọn loại Node cho node đầu tiên:"
+  echo "1. V2ray"
+  echo "2. Trojan"
+  read -p "Nhập lựa chọn của bạn (1/2): " node_choice1
+  if [ "$node_choice1" -eq 1 ]; then
+    node_type1="V2ray"
     read -p "Có mở Vless không? (true/false): " enable_vless1
+  else
+    node_type1="Trojan"
+    enable_vless1="false"
   fi
   create_node_config $node_id1 $node_type1 $enable_vless1 >> $config_path
 
   # Thêm cấu hình cho node thứ hai nếu cần
   if [ "$num_nodes" -eq 2 ]; then
     read -p "Nhập NodeID cho node: " node_id2
-    read -p "Chọn loại Node (v2ray/trojan): " node_type2
-    enable_vless2="false"
-    if [ "$node_type2" == "v2ray" ]; then
+    echo "Chọn loại Node cho node thứ hai:"
+    echo "1. V2ray"
+    echo "2. Trojan"
+    read -p "Nhập lựa chọn của bạn (1/2): " node_choice2
+    if [ "$node_choice2" -eq 1 ]; then
+      node_type2="V2ray"
       read -p "Có mở Vless không? (true/false): " enable_vless2
+    else
+      node_type2="Trojan"
+      enable_vless2="false"
     fi
     create_node_config $node_id2 $node_type2 $enable_vless2 >> $config_path
   fi
@@ -146,20 +158,32 @@ EOL
 
   # Thêm cấu hình cho node đầu tiên
   read -p "Nhập NodeID cho node: " node_id1
-  read -p "Chọn loại Node (v2ray/trojan): " node_type1
-  enable_vless1="false"
-  if [ "$node_type1" == "v2ray" ]; then
+  echo "Chọn loại Node cho node đầu tiên:"
+  echo "1. V2ray"
+  echo "2. Trojan"
+  read -p "Nhập lựa chọn của bạn (1/2): " node_choice1
+  if [ "$node_choice1" -eq 1 ]; then
+    node_type1="V2ray"
     read -p "Có mở Vless không? (true/false): " enable_vless1
+  else
+    node_type1="Trojan"
+    enable_vless1="false"
   fi
   create_node_config $node_id1 $node_type1 $enable_vless1 >> $config_path
 
   # Thêm cấu hình cho node thứ hai nếu cần
   if [ "$num_nodes" -eq 2 ]; then
     read -p "Nhập NodeID cho node: " node_id2
-    read -p "Chọn loại Node (v2ray/trojan): " node_type2
-    enable_vless2="false"
-    if [ "$node_type2" == "v2ray" ]; then
+    echo "Chọn loại Node cho node thứ hai:"
+    echo "1. V2ray"
+    echo "2. Trojan"
+    read -p "Nhập lựa chọn của bạn (1/2): " node_choice2
+    if [ "$node_choice2" -eq 1 ]; then
+      node_type2="V2ray"
       read -p "Có mở Vless không? (true/false): " enable_vless2
+    else
+      node_type2="Trojan"
+      enable_vless2="false"
     fi
     create_node_config $node_id2 $node_type2 $enable_vless2 >> $config_path
   fi
