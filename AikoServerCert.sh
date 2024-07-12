@@ -212,4 +212,6 @@ case $choice in
     uninstall_aiko_server
     ;;
   *)
-    echo "Lựa chọn không hợp lệ. Vui lòng chạy lại script và chọn 1, 2 hoặc 
+    echo "Lựa chọn không hợp lệ. Vui lòng chạy lại script và chọn 1, 2 hoặc 3."
+    ;;
+esac
