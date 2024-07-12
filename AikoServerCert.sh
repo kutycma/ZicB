@@ -38,6 +38,7 @@ install_aiko_server() {
   create_node_config() {
     local node_id=$1
     local node_type=$2
+    local enable_vless=$3
     cat <<EOL
   - PanelType: "ZicBoard"
     ApiConfig:
@@ -46,7 +47,7 @@ install_aiko_server() {
       NodeID: $node_id
       NodeType: $node_type
       Timeout: 30
-      EnableVless: false
+      EnableVless: $enable_vless
       RuleListPath:
     ControllerConfig:
       EnableProxyProtocol: false
@@ -72,15 +73,23 @@ EOL
   echo "Nodes:" > $config_path
 
   # Thêm cấu hình cho node đầu tiên
-  read -p "Nhập NodeID cho node Vmess: " node_id1
-  node_type1="V2ray"
-  create_node_config $node_id1 $node_type1 >> $config_path
+  read -p "Nhập NodeID cho node: " node_id1
+  read -p "Chọn loại Node (v2ray/trojan): " node_type1
+  enable_vless1="false"
+  if [ "$node_type1" == "v2ray" ]; then
+    read -p "Có mở Vless không? (true/false): " enable_vless1
+  fi
+  create_node_config $node_id1 $node_type1 $enable_vless1 >> $config_path
 
   # Thêm cấu hình cho node thứ hai nếu cần
   if [ "$num_nodes" -eq 2 ]; then
-    read -p "Nhập NodeID cho node Trojan: " node_id2
-    node_type2="Trojan"
-    create_node_config $node_id2 $node_type2 >> $config_path
+    read -p "Nhập NodeID cho node: " node_id2
+    read -p "Chọn loại Node (v2ray/trojan): " node_type2
+    enable_vless2="false"
+    if [ "$node_type2" == "v2ray" ]; then
+      read -p "Có mở Vless không? (true/false): " enable_vless2
+    fi
+    create_node_config $node_id2 $node_type2 $enable_vless2 >> $config_path
   fi
 
   clear
@@ -101,6 +110,7 @@ update_config() {
   create_node_config() {
     local node_id=$1
     local node_type=$2
+    local enable_vless=$3
     cat <<EOL
   - PanelType: "ZicBoard"
     ApiConfig:
@@ -109,7 +119,7 @@ update_config() {
       NodeID: $node_id
       NodeType: $node_type
       Timeout: 30
-      EnableVless: false
+      EnableVless: $enable_vless
       RuleListPath:
     ControllerConfig:
       EnableProxyProtocol: false
@@ -135,16 +145,25 @@ EOL
   echo "Nodes:" > $config_path
 
   # Thêm cấu hình cho node đầu tiên
-  read -p "Nhập NodeID cho Vmess: " node_id1
-  node_type1="V2ray"
-  create_node_config $node_id1 $node_type1 >> $config_path
+  read -p "Nhập NodeID cho node: " node_id1
+  read -p "Chọn loại Node (v2ray/trojan): " node_type1
+  enable_vless1="false"
+  if [ "$node_type1" == "v2ray" ]; then
+    read -p "Có mở Vless không? (true/false): " enable_vless1
+  fi
+  create_node_config $node_id1 $node_type1 $enable_vless1 >> $config_path
 
   # Thêm cấu hình cho node thứ hai nếu cần
   if [ "$num_nodes" -eq 2 ]; then
-    read -p "Nhập NodeID cho Trojan: " node_id2
-    node_type2="Trojan"
-    create_node_config $node_id2 $node_type2 >> $config_path
+    read -p "Nhập NodeID cho node: " node_id2
+    read -p "Chọn loại Node (v2ray/trojan): " node_type2
+    enable_vless2="false"
+    if [ "$node_type2" == "v2ray" ]; then
+      read -p "Có mở Vless không? (true/false): " enable_vless2
+    fi
+    create_node_config $node_id2 $node_type2 $enable_vless2 >> $config_path
   fi
+
   clear
   echo "Cấu hình đã được tạo tại $config_path"
   echo "Khởi động Aiko-Server sau 3 giây"
