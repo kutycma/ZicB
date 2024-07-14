@@ -49,6 +49,7 @@ install_aiko_server() {
       RuleListPath:
     ControllerConfig:
       EnableProxyProtocol: false
+      DeviceOnlineMinTraffic: 100
       DisableLocalREALITYConfig: false
       EnableREALITY: false
       REALITYConfigs:
@@ -137,6 +138,7 @@ update_config() {
       RuleListPath:
     ControllerConfig:
       EnableProxyProtocol: false
+      DeviceOnlineMinTraffic: 100
       DisableLocalREALITYConfig: false
       EnableREALITY: false
       REALITYConfigs:
